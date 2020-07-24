@@ -1,5 +1,3 @@
-from stack import singly_linked_list
-k = singly_linked_list.LinkedList
 """
 A stack is a data structure whose primary purpose is to store and
 return elements in Last In First Out order. 
@@ -30,14 +28,15 @@ class ArrayStack:
         return self.storage.pop()
 
 
-# import sys
-# sys.path.append('singly_linked_list')
+import sys
+sys.path.append('stack/singly_linked_list')
+from singly_linked_list import LinkedList
 
 
 class LLStack:
     def __init__(self):
         self.size = 0
-        self.storage = k()
+        self.storage = LinkedList()
 
     def __len__(self):
         return self.size
