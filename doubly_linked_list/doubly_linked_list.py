@@ -87,7 +87,12 @@ class DoublyLinkedList:
     """
 
     def remove_from_tail(self):
-        pass
+        # get value
+        value = self.tail.value
+        # delete node
+        self.delete(self.tail)
+        # return new value
+        return value
 
     """
     Removes the input node from its current spot in the 
@@ -95,8 +100,10 @@ class DoublyLinkedList:
     """
 
     def move_to_front(self, node):
+        # if node is already head
         if node is self.head:
             return
+        # get the value
         value = node.value
         if node is self.tail:
             self.remove_from_tail()
@@ -111,7 +118,12 @@ class DoublyLinkedList:
     """
 
     def move_to_end(self, node):
-        pass
+        # get value
+        value = node.value
+        self.delete(node)
+        # get new value
+        self.add_to_tail(value)
+
 
     """
     Deletes the input node from the List, preserving the 
@@ -119,7 +131,24 @@ class DoublyLinkedList:
     """
 
     def delete(self, node):
-        pass
+        # if empty
+        if not self.head and not self.tail:
+            return None
+        # if node is head
+        if node == self.head:
+            self.head = node.next
+            self.head.prev = None
+        # if node is tail
+        if node == self.tail:
+            node.tail = node.prev
+            self.tail.next = None
+        # if only one node
+        if self.head == self.tail:
+            self.head = self.tail = None
+        # if node is anywhere else
+        else:
+            node.delete()
+        self.length -= 1
 
     """
     Finds and returns the maximum value of all the nodes 
@@ -127,4 +156,15 @@ class DoublyLinkedList:
     """
 
     def get_max(self):
-        pass
+        max_node = self.head.value
+        this_node = self.head
+        # search thru list
+        while this_node:
+            # if current node is greater than max node
+            if this_node.value > max_node:
+                # nodes become equal
+                max_node = this_node.value
+                # move onto to next node in list
+            this_node = this_node.next
+            # returns the maximum value of nodes in list
+        return max_node
