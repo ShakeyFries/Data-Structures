@@ -1,8 +1,11 @@
-import unittest
-import random
-import sys
 import io
-from binary_search_tree import BSTNode
+import random
+# from binary_search_tree import BSTNode
+import sys
+import unittest
+
+from binary_search_tree.binary_search_tree import BSTNode
+
 
 class BinarySearchTreeTests(unittest.TestCase):
     def setUp(self):
